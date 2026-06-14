@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+*.c text eol=lf diff=c
+*.h text eol=lf diff=c
+
+CMakeLists.txt text eol=lf diff=c
+CMakePresets.json text eol=lf
+*.cmake text eol=lf
+
+.clang-format text eol=lf
+.clang-tidy text eol=lf
+
+*.sh text eol=lf executable
+
+.github/**/*.yml text eol=lf
+.github/**/*.yaml text eol=lf
+
+*.md text eol=lf diff=markdown

@@ -1,0 +1,19 @@
+---
+Checks: >
+  -*,
+  cert-*,
+  bugprone-*,
+  performance-*,
+  clang-analyzer-*,
+  readability-*,
+  -readability-magic-numbers,
+  -readability-identifier-length
+
+WarningsAsErrors: "cert-*,bugprone-*,clang-analyzer-*"
+
+HeaderFilterRegex: "^(src|include)/.*"
+
+CheckOptions:
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: "1"
+...
