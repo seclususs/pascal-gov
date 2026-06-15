@@ -16,13 +16,10 @@ Checks: >
   -readability-magic-numbers,
   -readability-identifier-length,
   -readability-simplify-boolean-expr,
-  -readability-function-cognitive-complexity
+  -readability-function-cognitive-complexity,
+  -readability-braces-around-statements
 
 WarningsAsErrors: "cert-*,bugprone-*,clang-analyzer-*"
 
 HeaderFilterRegex: "^(src|include)/.*"
-
-CheckOptions:
-  - key: readability-braces-around-statements.ShortStatementLines
-    value: "2"
 ...
