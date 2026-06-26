@@ -4,7 +4,31 @@
 #include "pascal_gov/sysfs.h"
 #include "pascal_gov/parser.h"
 #include <errno.h>
+#include <fcntl.h>
 #include <unistd.h>
+
+void pascal_gov_sysfs_cache_init(
+	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache, const char *path)
+{
+	cache->fd = open(path, O_WRONLY | O_CLOEXEC);
+	if (cache->fd >= 0) {
+		cache->is_active = true;
+		cache->last_value = UINT64_MAX;
+	} else {
+		cache->is_active = false;
+	}
+}
+
+void pascal_gov_sysfs_cache_destroy(
+	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache)
+{
+	if (cache->fd >= 0) {
+		close(cache->fd);
+		cache->fd = -1;
+	}
+
+	cache->is_active = false;
+}
 
 int pascal_gov_sysfs_write_to_stream(int fd, uint64_t value)
 {
@@ -18,12 +42,18 @@ int pascal_gov_sysfs_write_to_stream(int fd, uint64_t value)
 	if (res < 0)
 		return -errno;
 
+	if ((size_t)res != len)
+		return -EIO;
+
 	return 0;
 }
 
 static inline bool check_absolute(uint64_t current, uint64_t target,
 				  uint64_t threshold)
 {
+	if (PASCAL_GOV_UNLIKELY(current == UINT64_MAX))
+		return true;
+
 	if (current == target)
 		return false;
 
@@ -36,6 +66,9 @@ static inline bool check_absolute(uint64_t current, uint64_t target,
 static inline bool check_relative(uint64_t current, uint64_t target,
 				  uint64_t tolerance_per_mille)
 {
+	if (PASCAL_GOV_UNLIKELY(current == UINT64_MAX))
+		return true;
+
 	if (current == target)
 		return false;
 
