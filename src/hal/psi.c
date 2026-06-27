@@ -52,7 +52,7 @@ void pascal_gov_psi_unregister_trigger(int fd)
 }
 
 int pascal_gov_psi_recover(pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor,
-			   const char *path)
+			   const char *PASCAL_GOV_RESTRICT path)
 {
 	if (monitor->fd >= 0) {
 		close(monitor->fd);
@@ -70,7 +70,8 @@ int pascal_gov_psi_recover(pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor,
 }
 
 void pascal_gov_psi_init(
-	pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor, const char *path,
+	pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor,
+	const char *PASCAL_GOV_RESTRICT path,
 	const pascal_gov_kalman_config *PASCAL_GOV_RESTRICT config)
 {
 	monitor->fd = open(path, O_RDONLY | O_CLOEXEC);
@@ -83,7 +84,7 @@ void pascal_gov_psi_init(
 	pascal_gov_kalman_init(&monitor->filter_some, config);
 }
 
-void pascal_gov_psi_destroy(pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor)
+void pascal_gov_psi_destroy(pascal_gov_psi_monitor *monitor)
 {
 	if (monitor->fd >= 0) {
 		close(monitor->fd);
@@ -91,7 +92,8 @@ void pascal_gov_psi_destroy(pascal_gov_psi_monitor *PASCAL_GOV_RESTRICT monitor)
 	}
 }
 
-static inline int buffer_cmp(const uint8_t *buf, const char *str, size_t len)
+static inline int buffer_cmp(const uint8_t *PASCAL_GOV_RESTRICT buf,
+			     const char *PASCAL_GOV_RESTRICT str, size_t len)
 {
 	for (size_t i = 0; i < len; ++i)
 		if (buf[i] != (uint8_t)str[i])
