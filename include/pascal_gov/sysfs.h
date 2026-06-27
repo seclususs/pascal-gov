@@ -26,10 +26,10 @@ typedef struct {
 } pascal_gov_sysfs_cache;
 
 void pascal_gov_sysfs_cache_init(
-	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache, const char *path);
+	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache,
+	const char *PASCAL_GOV_RESTRICT path);
 
-void pascal_gov_sysfs_cache_destroy(
-	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache);
+void pascal_gov_sysfs_cache_destroy(pascal_gov_sysfs_cache *cache);
 
 int pascal_gov_sysfs_write_to_stream(int fd, uint64_t value);
 

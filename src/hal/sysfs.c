@@ -8,7 +8,8 @@
 #include <unistd.h>
 
 void pascal_gov_sysfs_cache_init(
-	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache, const char *path)
+	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache,
+	const char *PASCAL_GOV_RESTRICT path)
 {
 	cache->fd = open(path, O_WRONLY | O_CLOEXEC);
 	if (cache->fd >= 0) {
@@ -19,8 +20,7 @@ void pascal_gov_sysfs_cache_init(
 	}
 }
 
-void pascal_gov_sysfs_cache_destroy(
-	pascal_gov_sysfs_cache *PASCAL_GOV_RESTRICT cache)
+void pascal_gov_sysfs_cache_destroy(pascal_gov_sysfs_cache *cache)
 {
 	if (cache->fd >= 0) {
 		close(cache->fd);
