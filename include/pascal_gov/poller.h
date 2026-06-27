@@ -32,8 +32,9 @@ void pascal_gov_poller_init(
 	float weight_pressure, float weight_derivative,
 	const pascal_gov_poller_config *PASCAL_GOV_RESTRICT tunables);
 
-uint64_t pascal_gov_poller_calculate_next_interval(
-	pascal_gov_poller_state *PASCAL_GOV_RESTRICT state,
-	float current_pressure, float avg300, float pressure_velocity);
+uint64_t
+pascal_gov_poller_calculate_next_interval(pascal_gov_poller_state *state,
+					  float current_pressure, float avg300,
+					  float pressure_velocity);
 
 #endif // PASCAL_GOV_POLLER_H

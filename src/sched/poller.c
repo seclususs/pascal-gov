@@ -25,8 +25,8 @@ void pascal_gov_poller_init(
 			   (uint64_t)real_now.tv_nsec;
 }
 
-static inline uint64_t pascal_gov_poller_next_random(
-	pascal_gov_poller_state *PASCAL_GOV_RESTRICT state, uint64_t range)
+static inline uint64_t
+pascal_gov_poller_next_random(pascal_gov_poller_state *state, uint64_t range)
 {
 	if (PASCAL_GOV_UNLIKELY(range == 0))
 		return 0;
@@ -42,9 +42,10 @@ static inline uint64_t pascal_gov_poller_next_random(
 	return (uint64_t)(product >> 64);
 }
 
-static inline uint64_t pascal_gov_poller_apply_discrete_math(
-	pascal_gov_poller_state *PASCAL_GOV_RESTRICT state, uint64_t interval,
-	uint64_t min_limit, uint64_t max_limit)
+static inline uint64_t
+pascal_gov_poller_apply_discrete_math(pascal_gov_poller_state *state,
+				      uint64_t interval, uint64_t min_limit,
+				      uint64_t max_limit)
 {
 	uint64_t step = state->tunables.quantization_step_ms;
 	uint64_t quantized = ((interval + (step / 2)) / step) * step;
@@ -83,9 +84,10 @@ static inline uint64_t pascal_gov_poller_apply_discrete_math(
 	return final_val;
 }
 
-uint64_t pascal_gov_poller_calculate_next_interval(
-	pascal_gov_poller_state *PASCAL_GOV_RESTRICT state,
-	float current_pressure, float avg300, float pressure_velocity)
+uint64_t
+pascal_gov_poller_calculate_next_interval(pascal_gov_poller_state *state,
+					  float current_pressure, float avg300,
+					  float pressure_velocity)
 {
 	struct timespec now;
 	clock_gettime(CLOCK_MONOTONIC, &now);
