@@ -6,8 +6,7 @@
 #include "pascal_gov/time.h"
 #include <math.h>
 
-void pascal_gov_thermal_init(
-	pascal_gov_thermal_state *PASCAL_GOV_RESTRICT state)
+void pascal_gov_thermal_init(pascal_gov_thermal_state *state)
 {
 	clock_gettime(CLOCK_MONOTONIC, &state->last_tick);
 
@@ -32,9 +31,10 @@ void pascal_gov_thermal_init(
 	}
 }
 
-static inline float pascal_gov_thermal_lead_lag_update(
-	pascal_gov_lead_lag_state *PASCAL_GOV_RESTRICT state, float input,
-	float dt, float gain, float t_lead, float t_lag)
+static inline float
+pascal_gov_thermal_lead_lag_update(pascal_gov_lead_lag_state *state,
+				   float input, float dt, float gain,
+				   float t_lead, float t_lag)
 {
 	if (PASCAL_GOV_UNLIKELY(state->first_run)) {
 		state->prev_u = input;

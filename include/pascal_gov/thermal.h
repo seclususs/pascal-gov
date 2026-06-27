@@ -61,8 +61,7 @@ typedef struct {
 	pascal_gov_smith_predictor smith_predictor;
 } pascal_gov_thermal_state;
 
-void pascal_gov_thermal_init(
-	pascal_gov_thermal_state *PASCAL_GOV_RESTRICT state);
+void pascal_gov_thermal_init(pascal_gov_thermal_state *state);
 
 float pascal_gov_thermal_update(
 	pascal_gov_thermal_state *PASCAL_GOV_RESTRICT state, float cpu_temp,
