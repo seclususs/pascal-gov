@@ -4,11 +4,13 @@
 #ifndef PASCAL_GOV_STR_H
 #define PASCAL_GOV_STR_H
 
+#include "pascal_gov/compiler.h"
 #include <stdbool.h>
 #include <stddef.h>
 
-static inline bool pascal_gov_str_has_prefix(const char *str,
-					     const char *prefix)
+static inline bool
+pascal_gov_str_has_prefix(const char *PASCAL_GOV_RESTRICT str,
+			  const char *PASCAL_GOV_RESTRICT prefix)
 {
 	while (*prefix)
 
@@ -18,7 +20,9 @@ static inline bool pascal_gov_str_has_prefix(const char *str,
 	return true;
 }
 
-static inline bool pascal_gov_str_contains(const char *str, const char *substr)
+static inline bool
+pascal_gov_str_contains(const char *PASCAL_GOV_RESTRICT str,
+			const char *PASCAL_GOV_RESTRICT substr)
 {
 	if (!*substr)
 		return true;
@@ -50,9 +54,11 @@ static inline void pascal_gov_str_to_lower(char *str)
 			*str += 32;
 }
 
-static inline void pascal_gov_str_build_path(char *out, size_t max_len,
-					     const char *dir, const char *sub,
-					     const char *file)
+static inline void
+pascal_gov_str_build_path(char *PASCAL_GOV_RESTRICT out, size_t max_len,
+			  const char *PASCAL_GOV_RESTRICT dir,
+			  const char *PASCAL_GOV_RESTRICT sub,
+			  const char *PASCAL_GOV_RESTRICT file)
 {
 	size_t i = 0;
 
