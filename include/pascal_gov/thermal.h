@@ -32,7 +32,7 @@ typedef struct {
 	float smith_delay_sec;
 } pascal_gov_thermal_config;
 
-typedef struct __attribute__((aligned(32))) {
+typedef struct PASCAL_GOV_ALIGNED(32) {
 	float value;
 	struct timespec timestamp;
 } pascal_gov_history_point;

@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-typedef struct __attribute__((aligned(64))) pascal_gov_context {
+typedef struct PASCAL_GOV_ALIGNED(64) pascal_gov_context {
 	pascal_gov_psi_monitor psi_monitor;
 	pascal_gov_thermal_sensor cpu_temp_sensor;
 	pascal_gov_thermal_sensor bat_temp_sensor;
