@@ -7,7 +7,7 @@
 #include "pascal_gov/compiler.h"
 #include <time.h>
 
-static inline __attribute__((always_inline)) float
+static inline PASCAL_GOV_ALWAYS_INLINE float
 pascal_gov_dt_sec(const struct timespec *PASCAL_GOV_RESTRICT prev,
 		  const struct timespec *PASCAL_GOV_RESTRICT now)
 {

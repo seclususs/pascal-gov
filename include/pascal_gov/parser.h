@@ -9,8 +9,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-static inline __attribute__((always_inline)) size_t
-pascal_gov_fmt_u64(uint64_t val, char *out_buf)
+static inline PASCAL_GOV_ALWAYS_INLINE size_t pascal_gov_fmt_u64(uint64_t val,
+								 char *out_buf)
 {
 	if (val == 0) {
 		out_buf[0] = '0';
@@ -34,8 +34,8 @@ pascal_gov_fmt_u64(uint64_t val, char *out_buf)
 	return len;
 }
 
-static inline __attribute__((always_inline)) size_t
-pascal_gov_fmt_u32(int32_t val, char *out_buf)
+static inline PASCAL_GOV_ALWAYS_INLINE size_t pascal_gov_fmt_u32(int32_t val,
+								 char *out_buf)
 {
 	char temp[16];
 	size_t i = 0;
@@ -57,7 +57,7 @@ pascal_gov_fmt_u32(int32_t val, char *out_buf)
 	return len;
 }
 
-static inline __attribute__((always_inline)) int32_t
+static inline PASCAL_GOV_ALWAYS_INLINE int32_t
 pascal_gov_parse_i32(const uint8_t *PASCAL_GOV_RESTRICT buffer, size_t len,
 		     bool *PASCAL_GOV_RESTRICT out_has_digits)
 {
@@ -86,7 +86,7 @@ pascal_gov_parse_i32(const uint8_t *PASCAL_GOV_RESTRICT buffer, size_t len,
 	return parsed_val * sign;
 }
 
-static inline __attribute__((always_inline)) uint64_t
+static inline PASCAL_GOV_ALWAYS_INLINE uint64_t
 pascal_gov_parse_u64(const uint8_t *PASCAL_GOV_RESTRICT buffer, size_t len,
 		     size_t start_pos, size_t *PASCAL_GOV_RESTRICT out_next_pos)
 {
@@ -111,7 +111,7 @@ pascal_gov_parse_u64(const uint8_t *PASCAL_GOV_RESTRICT buffer, size_t len,
 	return parsed_val;
 }
 
-static inline __attribute__((always_inline)) float
+static inline PASCAL_GOV_ALWAYS_INLINE float
 pascal_gov_parse_f32(const uint8_t *PASCAL_GOV_RESTRICT buffer, size_t len,
 		     size_t start_pos, size_t *PASCAL_GOV_RESTRICT out_next_pos)
 {
