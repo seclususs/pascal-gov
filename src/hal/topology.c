@@ -4,6 +4,7 @@
 #define _GNU_SOURCE
 #include "daemon/topology.h"
 #include "daemon/logger.h"
+#include "pascal_gov/compiler.h"
 #include "pascal_gov/parser.h"
 #include <fcntl.h>
 #include <limits.h>
@@ -37,7 +38,8 @@ static long read_sysfs_long(const char *path)
 	return (int)has_digits ? (long)parsed_val : -1;
 }
 
-static bool build_cpuset(long num_cores, const char *fmt, cpu_set_t *cpuset)
+static bool build_cpuset(long num_cores, const char *PASCAL_GOV_RESTRICT fmt,
+			 cpu_set_t *PASCAL_GOV_RESTRICT cpuset)
 {
 	long min_val = LONG_MAX;
 	bool found = false;
